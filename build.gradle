@@ -1,40 +1,49 @@
 plugins {
-    // Применение плагина 'java' для компиляции Java кода
-    java
-    // Применение плагина 'application' для создания исполняемого JAR
-    application
+    id 'java'
+    id 'application'
 }
 
-// Группа и версия вашего проекта
-group = "com.practic"
-version = "1.0-SNAPSHOT"
-
-// Основной класс вашего приложения
-application {
-    mainClassName = "com.practic.ImageProcessor"
-}
+group 'com.practic'
+version '1.0-SNAPSHOT'
 
 repositories {
-    // Репозитории для поиска зависимостей
     mavenCentral()
+}
+tasks.register('OnJar', Jar) {
+    manifest.from jar.manifest
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+    with jar
 }
 
 dependencies {
-    // Зависимости для вашего проекта
-    // Для OpenCV, вам нужно будет добавить соответствующую зависимость, если она доступна в Maven Central,
-    // или указать путь к локальной библиотеке, если она у вас есть.
-    // Например:
-    // implementation("org.opencv:opencv-java:версия")
+    // Зависимости для Swing не требуются, так как они входят в стандартный набор Java SE
 }
 
-tasks.withType<JavaCompile> {
-    // Установка версии Java
-    sourceCompatibility = "1.8"
-    targetCompatibility = "1.8"
+application {
+    // Указание основного класса для запуска приложения
+    mainClassName = 'com.practic.ImageProcessor'
 }
 
-// Задача для запуска вашего приложения
-tasks.run {
-    // Аргументы командной строки, если они вам нужны
-    args = listOf("arg1", "arg2")
+compileJava {
+    // Установка версии Java, если это необходимо
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+// Для создания исполняемого JAR с зависимостями
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.practic.ImageProcessor'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
