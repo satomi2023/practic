@@ -246,7 +246,7 @@ public class ImageProcessor extends JFrame {
             && y + height <= processedImage.getHeight()) {
           processedImage = processedImage.getSubimage(x, y, width, height);
           imageLabel.setIcon(new ImageIcon(processedImage));
-          imageLabel.repaint(); // Добавьте этот вызов, чтобы обновить отображение
+          imageLabel.repaint(); // Обновление отображения
         } else {
           JOptionPane.showMessageDialog(
               this,
