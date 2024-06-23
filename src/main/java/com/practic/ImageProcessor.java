@@ -46,7 +46,7 @@ public class ImageProcessor extends JFrame {
             this,
             "Хотите выбрать изображение с компьютера или использовать изображение по умолчанию?",
             "Выбор изображения",
-            JOptionPane.YES_NO_OPTION,
+            JOptionPane.YES_NO_CANCEL_OPTION,
             JOptionPane.QUESTION_MESSAGE,
             null,
             options,
@@ -67,7 +67,7 @@ public class ImageProcessor extends JFrame {
           originalImage = ImageIO.read(file);
           processedImage = deepCopy(originalImage);
           imageLabel.setIcon(new ImageIcon(processedImage));
-          pack(); // Обновите размер окна в соответствии с новым изображением
+          pack(); // Обновить размер окна в соответствии с новым изображением
         } catch (IOException e) {
           JOptionPane.showMessageDialog(
               this,
@@ -80,7 +80,6 @@ public class ImageProcessor extends JFrame {
       // Пользователь выбрал использование изображения по умолчанию
       try {
         // Загрузка изображения по умолчанию из ресурсов приложения
-        // Укажите путь к изображению по умолчанию в вашем проекте
         originalImage = ImageIO.read(getClass().getResource("/image.png"));
         processedImage = deepCopy(originalImage);
         imageLabel.setIcon(new ImageIcon(processedImage));
@@ -92,7 +91,27 @@ public class ImageProcessor extends JFrame {
             "Ошибка",
             JOptionPane.ERROR_MESSAGE);
       }
+    } else {
+      // Пользователь закрыл диалоговое окно
+      JOptionPane.showMessageDialog(
+          this,
+          "Не выбрано изображение. Приложение будет закрыто.",
+          "Закрытие приложения",
+          JOptionPane.INFORMATION_MESSAGE);
+      System.exit(0); // Закрыть приложение
     }
+    if (originalImage == null) {
+      closeApplication();
+    }
+  }
+
+  private void closeApplication() {
+    JOptionPane.showMessageDialog(
+        this,
+        "Не выбрано изображение. Приложение будет закрыто.",
+        "Закрытие приложения",
+        JOptionPane.INFORMATION_MESSAGE);
+    System.exit(0);
   }
 
   private void createMenu() {
@@ -115,11 +134,15 @@ public class ImageProcessor extends JFrame {
   private void setupWindow() {
     // Загрузка иконки
     try {
-      Image icon = ImageIO.read(getClass().getResource("/icon.jpg")); // Замените "/icon.jpg" на актуальный путь к вашему файлу иконки
+      Image icon = ImageIO.read(getClass().getResource("/icon.jpg"));
       setIconImage(icon);
     } catch (IOException e) {
       e.printStackTrace();
-      JOptionPane.showMessageDialog(this, "Не удалось загрузить иконку: " + e.getMessage(), "Ошибка", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(
+          this,
+          "Не удалось загрузить иконку: " + e.getMessage(),
+          "Ошибка",
+          JOptionPane.ERROR_MESSAGE);
     }
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
