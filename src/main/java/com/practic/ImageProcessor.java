@@ -19,15 +19,15 @@ public class ImageProcessor extends JFrame {
   private JLabel imageLabel;
 
   public ImageProcessor() {
-    imageLabel = new JLabel(); // Инициализация imageLabel
-    add(imageLabel); // Добавление imageLabel в JFrame
-    // Загрузка и отображение изображения
+    imageLabel = new JLabel(); // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ imageLabel
+    add(imageLabel); // Р”РѕР±Р°РІР»РµРЅРёРµ imageLabel РІ JFrame
+    // Р—Р°РіСЂСѓР·РєР° Рё РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
     selectImage();
 
-    // Создание меню
+    // РЎРѕР·РґР°РЅРёРµ РјРµРЅСЋ
     createMenu();
 
-    // Настройка окна приложения
+    // РќР°СЃС‚СЂРѕР№РєР° РѕРєРЅР° РїСЂРёР»РѕР¶РµРЅРёСЏ
     setupWindow();
   }
 
@@ -39,13 +39,13 @@ public class ImageProcessor extends JFrame {
   }
 
   private void selectImage() {
-    // Предложение пользователю выбрать изображение или использовать изображение по умолчанию
-    Object[] options = {"Выбрать изображение", "Использовать изображение по умолчанию"};
+    // РџСЂРµРґР»РѕР¶РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ РІС‹Р±СЂР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РёР»Рё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+    Object[] options = {"Р’С‹Р±СЂР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ", "РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ"};
     int choice =
         JOptionPane.showOptionDialog(
             this,
-            "Хотите выбрать изображение с компьютера или использовать изображение по умолчанию?",
-            "Выбор изображения",
+            "РҐРѕС‚РёС‚Рµ РІС‹Р±СЂР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ СЃ РєРѕРјРїСЊСЋС‚РµСЂР° РёР»Рё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ?",
+            "Р’С‹Р±РѕСЂ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE,
             null,
@@ -53,9 +53,9 @@ public class ImageProcessor extends JFrame {
             options[0]);
 
     if (choice == JOptionPane.YES_OPTION) {
-      // Пользователь выбрал загрузку изображения с компьютера
+      // РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р» Р·Р°РіСЂСѓР·РєСѓ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ СЃ РєРѕРјРїСЊСЋС‚РµСЂР°
       JFileChooser fileChooser = new JFileChooser();
-      fileChooser.setDialogTitle("Выберите изображение");
+      fileChooser.setDialogTitle("Р’С‹Р±РµСЂРёС‚Рµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ");
       fileChooser.setAcceptAllFileFilterUsed(false);
       fileChooser.addChoosableFileFilter(
           new FileNameExtensionFilter("Image files", "jpg", "png", "gif", "bmp"));
@@ -67,29 +67,29 @@ public class ImageProcessor extends JFrame {
           originalImage = ImageIO.read(file);
           processedImage = deepCopy(originalImage);
           imageLabel.setIcon(new ImageIcon(processedImage));
-          pack(); // Обновите размер окна в соответствии с новым изображением
+          pack(); // РћР±РЅРѕРІРёС‚Рµ СЂР°Р·РјРµСЂ РѕРєРЅР° РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ РЅРѕРІС‹Рј РёР·РѕР±СЂР°Р¶РµРЅРёРµРј
         } catch (IOException e) {
           JOptionPane.showMessageDialog(
               this,
-              "Не удалось загрузить изображение: " + e.getMessage(),
-              "Ошибка",
+              "РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ: " + e.getMessage(),
+              "РћС€РёР±РєР°",
               JOptionPane.ERROR_MESSAGE);
         }
       }
     } else if (choice == JOptionPane.NO_OPTION) {
-      // Пользователь выбрал использование изображения по умолчанию
+      // РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р» РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
       try {
-        // Загрузка изображения по умолчанию из ресурсов приложения
-        // Укажите путь к изображению по умолчанию в вашем проекте
+        // Р—Р°РіСЂСѓР·РєР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РёР· СЂРµСЃСѓСЂСЃРѕРІ РїСЂРёР»РѕР¶РµРЅРёСЏ
+        // РЈРєР°Р¶РёС‚Рµ РїСѓС‚СЊ Рє РёР·РѕР±СЂР°Р¶РµРЅРёСЋ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РІ РІР°С€РµРј РїСЂРѕРµРєС‚Рµ
         originalImage = ImageIO.read(getClass().getResource("/image.png"));
         processedImage = deepCopy(originalImage);
         imageLabel.setIcon(new ImageIcon(processedImage));
-        pack(); // Обновите размер окна в соответствии с изображением по умолчанию
+        pack(); // РћР±РЅРѕРІРёС‚Рµ СЂР°Р·РјРµСЂ РѕРєРЅР° РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ РёР·РѕР±СЂР°Р¶РµРЅРёРµРј РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
       } catch (IOException e) {
         JOptionPane.showMessageDialog(
             this,
-            "Не удалось загрузить изображение по умолчанию: " + e.getMessage(),
-            "Ошибка",
+            "РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ: " + e.getMessage(),
+            "РћС€РёР±РєР°",
             JOptionPane.ERROR_MESSAGE);
       }
     }
@@ -97,29 +97,29 @@ public class ImageProcessor extends JFrame {
 
   private void createMenu() {
     JMenuBar menuBar = new JMenuBar();
-    JMenu menu = new JMenu("Опции");
+    JMenu menu = new JMenu("РћРїС†РёРё");
     menuBar.add(menu);
 
-    // Добавление пунктов меню
-    addMenuItem(menu, "Выбрать канал", e -> chooseChannel());
-    addMenuItem(menu, "Переключить оттенки серого", e -> toggleGrayscale());
-    addMenuItem(menu, "Обрезать изображение", e -> cropImage());
-    addMenuItem(menu, "Повысить яркость", e -> increaseBrightness());
-    addMenuItem(menu, "Нарисовать круг", e -> drawCircle());
-    addMenuItem(menu, "Сбросить изменения", e -> resetChanges());
-    addMenuItem(menu, "Выбрать изображение", e -> selectImage());
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РїСѓРЅРєС‚РѕРІ РјРµРЅСЋ
+    addMenuItem(menu, "Р’С‹Р±СЂР°С‚СЊ РєР°РЅР°Р»", e -> chooseChannel());
+    addMenuItem(menu, "РџРµСЂРµРєР»СЋС‡РёС‚СЊ РѕС‚С‚РµРЅРєРё СЃРµСЂРѕРіРѕ", e -> toggleGrayscale());
+    addMenuItem(menu, "РћР±СЂРµР·Р°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ", e -> cropImage());
+    addMenuItem(menu, "РџРѕРІС‹СЃРёС‚СЊ СЏСЂРєРѕСЃС‚СЊ", e -> increaseBrightness());
+    addMenuItem(menu, "РќР°СЂРёСЃРѕРІР°С‚СЊ РєСЂСѓРі", e -> drawCircle());
+    addMenuItem(menu, "РЎР±СЂРѕСЃРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ", e -> resetChanges());
+    addMenuItem(menu, "Р’С‹Р±СЂР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ", e -> selectImage());
 
     setJMenuBar(menuBar);
   }
 
   private void setupWindow() {
-    // Загрузка иконки
+    // Р—Р°РіСЂСѓР·РєР° РёРєРѕРЅРєРё
       try {
           Image icon = ImageIO.read(getClass().getResource("/icon.jpg"));
           setIconImage(icon);
       } catch (IOException e) {
           e.printStackTrace();
-          JOptionPane.showMessageDialog(this, "Не удалось загрузить иконку: " + e.getMessage(), "Ошибка", JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(this, "РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ РёРєРѕРЅРєСѓ: " + e.getMessage(), "РћС€РёР±РєР°", JOptionPane.ERROR_MESSAGE);
       }
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -155,14 +155,14 @@ public class ImageProcessor extends JFrame {
     imageLabel.repaint();
   }
 
-  // Метод для выбора цветового канала
+  // РњРµС‚РѕРґ РґР»СЏ РІС‹Р±РѕСЂР° С†РІРµС‚РѕРІРѕРіРѕ РєР°РЅР°Р»Р°
   private void chooseChannel() {
-    String[] options = {"Красный", "Зеленый", "Синий"};
+    String[] options = {"РљСЂР°СЃРЅС‹Р№", "Р—РµР»РµРЅС‹Р№", "РЎРёРЅРёР№"};
     int choice =
         JOptionPane.showOptionDialog(
             this,
-            "Выберите канал:",
-            "Выбор канала",
+            "Р’С‹Р±РµСЂРёС‚Рµ РєР°РЅР°Р»:",
+            "Р’С‹Р±РѕСЂ РєР°РЅР°Р»Р°",
             JOptionPane.DEFAULT_OPTION,
             JOptionPane.INFORMATION_MESSAGE,
             null,
@@ -170,21 +170,21 @@ public class ImageProcessor extends JFrame {
             options[0]);
 
     switch (choice) {
-      case 0: // Красный
+      case 0: // РљСЂР°СЃРЅС‹Р№
         showChannel(Color.RED);
         break;
-      case 1: // Зеленый
+      case 1: // Р—РµР»РµРЅС‹Р№
         showChannel(Color.GREEN);
         break;
-      case 2: // Синий
+      case 2: // РЎРёРЅРёР№
         showChannel(Color.BLUE);
         break;
       default:
-        // Ничего не делаем, если пользователь закрыл диалоговое окно
+        // РќРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµРј, РµСЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°РєСЂС‹Р» РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ
     }
   }
 
-  // Метод для переключения в оттенки серого
+  // РњРµС‚РѕРґ РґР»СЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ РІ РѕС‚С‚РµРЅРєРё СЃРµСЂРѕРіРѕ
   private void toggleGrayscale() {
     for (int x = 0; x < processedImage.getWidth(); x++) {
       for (int y = 0; y < processedImage.getHeight(); y++) {
@@ -201,12 +201,12 @@ public class ImageProcessor extends JFrame {
     imageLabel.setIcon(new ImageIcon(processedImage));
   }
 
-  // Метод для обрезки изображения
+  // РњРµС‚РѕРґ РґР»СЏ РѕР±СЂРµР·РєРё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
   private void cropImage() {
     try {
       String input =
           JOptionPane.showInputDialog(
-              this, "Введите координаты x, y и размеры обрезки width, height через запятую:");
+              this, "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ x, y Рё СЂР°Р·РјРµСЂС‹ РѕР±СЂРµР·РєРё width, height С‡РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ:");
       if (input != null && !input.isEmpty()) {
         String[] parts = input.split(",");
         int x = Integer.parseInt(parts[0].trim());
@@ -214,7 +214,7 @@ public class ImageProcessor extends JFrame {
         int width = Integer.parseInt(parts[2].trim());
         int height = Integer.parseInt(parts[3].trim());
 
-        // Проверка, что координаты и размеры находятся в пределах изображения
+        // РџСЂРѕРІРµСЂРєР°, С‡С‚Рѕ РєРѕРѕСЂРґРёРЅР°С‚С‹ Рё СЂР°Р·РјРµСЂС‹ РЅР°С…РѕРґСЏС‚СЃСЏ РІ РїСЂРµРґРµР»Р°С… РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
         if (x >= 0
             && y >= 0
             && width > 0
@@ -223,32 +223,32 @@ public class ImageProcessor extends JFrame {
             && y + height <= processedImage.getHeight()) {
           processedImage = processedImage.getSubimage(x, y, width, height);
           imageLabel.setIcon(new ImageIcon(processedImage));
-          imageLabel.repaint(); // Добавьте этот вызов, чтобы обновить отображение
+          imageLabel.repaint(); // Р”РѕР±Р°РІСЊС‚Рµ СЌС‚РѕС‚ РІС‹Р·РѕРІ, С‡С‚РѕР±С‹ РѕР±РЅРѕРІРёС‚СЊ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ
         } else {
           JOptionPane.showMessageDialog(
               this,
-              "Некорректные координаты или размеры обрезки.",
-              "Ошибка",
+              "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РёР»Рё СЂР°Р·РјРµСЂС‹ РѕР±СЂРµР·РєРё.",
+              "РћС€РёР±РєР°",
               JOptionPane.ERROR_MESSAGE);
         }
       }
     } catch (NumberFormatException e) {
       JOptionPane.showMessageDialog(
-          this, "Некорректный формат ввода.", "Ошибка", JOptionPane.ERROR_MESSAGE);
+          this, "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ С„РѕСЂРјР°С‚ РІРІРѕРґР°.", "РћС€РёР±РєР°", JOptionPane.ERROR_MESSAGE);
     }
   }
 
-  // Метод для увеличения яркости
+  // РњРµС‚РѕРґ РґР»СЏ СѓРІРµР»РёС‡РµРЅРёСЏ СЏСЂРєРѕСЃС‚Рё
   private void increaseBrightness() {
     try {
       String input =
           JOptionPane.showInputDialog(
-              this, "Введите значение для увеличения яркости (например, 1.5):");
+              this, "Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ РґР»СЏ СѓРІРµР»РёС‡РµРЅРёСЏ СЏСЂРєРѕСЃС‚Рё (РЅР°РїСЂРёРјРµСЂ, 1.5):");
       if (input != null && !input.isEmpty()) {
         float scaleFactor = Float.parseFloat(input);
 
         if (scaleFactor >= 1.1) {
-          // Проверка типа изображения и настройка массивов для RescaleOp
+          // РџСЂРѕРІРµСЂРєР° С‚РёРїР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ Рё РЅР°СЃС‚СЂРѕР№РєР° РјР°СЃСЃРёРІРѕРІ РґР»СЏ RescaleOp
           float[] scales = new float[processedImage.getColorModel().getNumComponents()];
           float[] offsets = new float[processedImage.getColorModel().getNumComponents()];
           Arrays.fill(scales, scaleFactor);
@@ -261,33 +261,33 @@ public class ImageProcessor extends JFrame {
         } else {
           JOptionPane.showMessageDialog(
               this,
-              "Фактор увеличения яркости должен быть больше или равен 1.1.",
-              "Ошибка",
+              "Р¤Р°РєС‚РѕСЂ СѓРІРµР»РёС‡РµРЅРёСЏ СЏСЂРєРѕСЃС‚Рё РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ РёР»Рё СЂР°РІРµРЅ 1.1.",
+              "РћС€РёР±РєР°",
               JOptionPane.ERROR_MESSAGE);
         }
       }
     } catch (Exception e) {
       JOptionPane.showMessageDialog(
           this,
-          "Ошибка при увеличении яркости: " + e.getMessage(),
-          "Ошибка",
+          "РћС€РёР±РєР° РїСЂРё СѓРІРµР»РёС‡РµРЅРёРё СЏСЂРєРѕСЃС‚Рё: " + e.getMessage(),
+          "РћС€РёР±РєР°",
           JOptionPane.ERROR_MESSAGE);
     }
   }
 
-  // Метод для рисования круга
+  // РњРµС‚РѕРґ РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ РєСЂСѓРіР°
   private void drawCircle() {
     try {
       String input =
           JOptionPane.showInputDialog(
-              this, "Введите координаты центра круга x, y и радиус через запятую:");
+              this, "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ С†РµРЅС‚СЂР° РєСЂСѓРіР° x, y Рё СЂР°РґРёСѓСЃ С‡РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ:");
       if (input != null && !input.isEmpty()) {
         String[] parts = input.split(",");
         int x = Integer.parseInt(parts[0].trim());
         int y = Integer.parseInt(parts[1].trim());
         int radius = Integer.parseInt(parts[2].trim());
 
-        // Проверка, что координаты центра и радиус находятся в пределах изображения
+        // РџСЂРѕРІРµСЂРєР°, С‡С‚Рѕ РєРѕРѕСЂРґРёРЅР°С‚С‹ С†РµРЅС‚СЂР° Рё СЂР°РґРёСѓСЃ РЅР°С…РѕРґСЏС‚СЃСЏ РІ РїСЂРµРґРµР»Р°С… РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
         if (x - radius >= 0
             && y - radius >= 0
             && x + radius <= processedImage.getWidth()
@@ -300,18 +300,18 @@ public class ImageProcessor extends JFrame {
         } else {
           JOptionPane.showMessageDialog(
               this,
-              "Некорректные координаты центра или радиус.",
-              "Ошибка",
+              "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ С†РµРЅС‚СЂР° РёР»Рё СЂР°РґРёСѓСЃ.",
+              "РћС€РёР±РєР°",
               JOptionPane.ERROR_MESSAGE);
         }
       }
     } catch (NumberFormatException e) {
       JOptionPane.showMessageDialog(
-          this, "Некорректный формат ввода.", "Ошибка", JOptionPane.ERROR_MESSAGE);
+          this, "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ С„РѕСЂРјР°С‚ РІРІРѕРґР°.", "РћС€РёР±РєР°", JOptionPane.ERROR_MESSAGE);
     }
   }
 
-  // Метод для сброса изменений
+  // РњРµС‚РѕРґ РґР»СЏ СЃР±СЂРѕСЃР° РёР·РјРµРЅРµРЅРёР№
   private void resetChanges() {
     processedImage = deepCopy(originalImage);
     imageLabel.setIcon(new ImageIcon(processedImage));
